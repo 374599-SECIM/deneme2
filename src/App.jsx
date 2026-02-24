@@ -69,7 +69,7 @@ function App() {
 
   return (
     <DataProvider>
-      <BrowserRouter basename="/aso-iltek-web">
+      <BrowserRouter basename="/deneme2">
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
