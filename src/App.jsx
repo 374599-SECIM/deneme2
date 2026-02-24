@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { PieChart, LogIn } from 'lucide-react';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Rankings from './pages/Rankings';
@@ -33,33 +34,86 @@ function App() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200 w-full max-w-md">
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-slate-900 mb-2">Giriş Yap</h1>
-            <p className="text-slate-500">Lütfen site şifresini giriniz.</p>
+      <div style={{
+        fontFamily: "'Inter', sans-serif",
+        background: 'linear-gradient(135deg, #0c1445 0%, #1a237e 50%, #283593 100%)',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '16px',
+      }}>
+        <div style={{
+          background: 'rgba(255,255,255,0.95)',
+          borderRadius: '20px',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+          padding: '50px 40px',
+          maxWidth: '420px',
+          width: '100%',
+          textAlign: 'center',
+          backdropFilter: 'blur(10px)',
+        }}>
+          <div style={{ fontSize: '3em', color: '#1a237e', marginBottom: '15px' }}>
+            <PieChart size={56} strokeWidth={2} />
           </div>
+          <h1 style={{
+            fontSize: '1.8em',
+            fontWeight: 700,
+            color: '#1a237e',
+            marginBottom: '8px',
+          }}>ASO</h1>
+          <p style={{ color: '#6c757d', marginBottom: '30px' }}>Veri Analitiği Dashboard</p>
 
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Şifre"
-                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
+          <form onSubmit={handleLogin}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Şifrenizi girin..."
+              autoFocus
+              style={{
+                width: '100%',
+                borderRadius: '12px',
+                padding: '14px 20px',
+                fontSize: '1em',
+                border: '2px solid #e0e0e0',
+                outline: 'none',
+                boxSizing: 'border-box',
+                transition: 'border-color 0.3s',
+                marginBottom: '10px',
+              }}
+              onFocus={(e) => { e.target.style.borderColor = '#1a237e'; e.target.style.boxShadow = '0 0 0 3px rgba(26,35,126,0.15)'; }}
+              onBlur={(e) => { e.target.style.borderColor = '#e0e0e0'; e.target.style.boxShadow = 'none'; }}
+            />
 
             {error && (
-              <p className="text-red-500 text-sm">{error}</p>
+              <p style={{ color: '#dc3545', fontSize: '0.9em', marginTop: '10px' }}>{error}</p>
             )}
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+              style={{
+                background: 'linear-gradient(135deg, #1a237e, #283593)',
+                border: 'none',
+                borderRadius: '12px',
+                padding: '14px',
+                fontSize: '1.05em',
+                fontWeight: 600,
+                color: 'white',
+                width: '100%',
+                marginTop: '15px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(26,35,126,0.3)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
             >
-              Giriş
+              <LogIn size={20} strokeWidth={2.5} />
+              Giriş Yap
             </button>
           </form>
         </div>
